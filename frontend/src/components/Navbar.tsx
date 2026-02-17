@@ -10,7 +10,7 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 w-full z-50 bg-white shadow">
       <div className="flex flex-row justify-between items-center px-20 h-16">
         <div>
-          <h2>Logo</h2>
+          <h2 className="text-2xl font-bold">Recruent</h2>
         </div>
         <div>
           <ul className="flex space-x-4">

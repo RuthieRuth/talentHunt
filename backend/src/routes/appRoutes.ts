@@ -1,7 +1,7 @@
 import { Router } from "express";
 import dotenv from 'dotenv';
 import { googleAuth, googleAuthCallback } from "../controller/authController.js";
-import { createApplication, createApplicationHandler, deleteApplication, getAllApplications, getApplicationByCandidateId, getApplicationById, getApplicationByJobId, uodateApplicationStatus } from "../controller/applicationController.js";
+import { createApplication, createApplicationHandler, deleteApplication, getAllApplications, getAllApplicationsHandler, getApplicationByCandidateId, getApplicationById, getApplicationByJobId, uodateApplicationStatus } from "../controller/applicationController.js";
 import { createJobListing, createJobListingHandler, deleteJobListing, deleteJobListingHandler, getAllJobListings, getAllJobListingsHandler, getJobListingById, getJobListingByIdHandler, updateJobListing, updateJobListingHandler } from "../controller/jobController.js";
 import { getUserInfo, requireAuth } from "../middleware/authenticateUser.js";
 
@@ -22,7 +22,7 @@ appRoutes.delete('/jobs/:id', deleteJobListingHandler);
 
 // Application Routes (POST requires login so server knows who is applying)
 appRoutes.post('/applications', requireAuth, createApplicationHandler);
-appRoutes.get('/applications', getAllApplications);
+appRoutes.get('/applications', getAllApplicationsHandler);
 appRoutes.get('/applications/:id', getApplicationById);
 appRoutes.get('/applications/job/:jobId', getApplicationByJobId);
 appRoutes.get('/applications/candidate/:candidateId', getApplicationByCandidateId);

@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,31 +16,35 @@ const Login = () => {
   };
 
   return (
-    <div className="flex flex-col items-center m-10 border rounded-md">
-      <h2 className="flex flex-col items-center justify-center font-bold text-2xl">
-        Welcome back
+    <div className="flex flex-col items-center m-10 ">
+      <h2 className="flex flex-col items-center justify-center font-bold text-2xl mb-4">
+        Welcome,
       </h2>
-      {/* <p>Email</p>
+      <div className="flex gap-5 mb-4">
+        <p className="mt-1">Email:</p>
         <input className="border border-gray-300 rounded-md p-2" type="text" />
-        <p>Password</p>
+      </div>
+      <div className="flex gap-5" >
+        <p>Password:</p>
         <input className="border border-gray-300 rounded-md p-2" type="password" />
-        <p>or continue with</p> */}
-      <button
+      </div>
+        <button
         onClick={handleLogin}
-        className="px-4 py-2 bg-blue-600 text-white rounded-md"
-      >
+        className="px-4 py-2 bg-blue-600 text-white rounded-md mt-5">
         Sign in
-      </button>
-      <div className="flex gap-4 m-4">
+        </button>
+        <div>
+          <p className="m-8">or continue with</p> 
+        </div>
+    
+      <div className="flex gap-4 mt-2">
         <button
           type="button"
           onClick={handleGoogleClick}
-          className="px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-md"
+          className="flex gap-3 px-4 py-2 bg-white text-gray-700 border border-gray-300 rounded-md"
         >
-          Google
-        </button>
-        <button className="px-4 py-2 bg-blue-800 text-white rounded-md">
-          Facebook
+          <FaGoogle className="mt-1"/>
+          Sign in with Google
         </button>
       </div>
     </div>

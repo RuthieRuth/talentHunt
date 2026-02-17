@@ -31,6 +31,8 @@ const JobDetails = () => {
       phoneNumber: ""
     });
 
+    const [alreadyAppliedTo, setAlreadyAppliedTo] = useState(false);
+
 
     const submitApplication = async (event: React.FormEvent) => {
       event.preventDefault();
@@ -58,13 +60,17 @@ const JobDetails = () => {
         if (response.ok) {
           console.log('Application submitted successfully');
         } else {
-          console.error('Failed to submit application');
-        }       
+          const data = await response.json().catch(() => ({}));
+          if (response.status === 400 && data.error?.includes('already applied')) {
+            setAlreadyAppliedTo(true);
+          } else {
+            console.error('Failed to submit application');
+          }
+        }
       } 
       catch (error) {
         console.error('Error submitting application:', error);
       }
-
 
       setShowApplyForm(false);
     };
@@ -120,12 +126,17 @@ const JobDetails = () => {
         <div>
             <button onClick={() => {
                 setShowApplyForm(true);
+                setAlreadyAppliedTo(false);
                 console.log("Apply button clicked");
             }}
                 className="border p-2 my-5 rounded-md bg-blue-600">
                 Apply</button>
         </div>
       )}
+
+        {alreadyAppliedTo && (
+          <p>You have already applied for this job.</p>
+        )}
 
         {showApplyForm && user?.role === 'CANDIDATE' && (
           <div className="border p-4 my-6 rounded-md">

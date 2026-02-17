@@ -12,8 +12,8 @@ type ApplicationFormDetails = {
     candidateId: string;
 };
 
-export const createApplicationHandler = async(req:Request, res:Response) =>{
-    try{
+export const createApplicationHandler = async (req: Request, res: Response) => {
+    try {
         // Prefer authenticated user id; fallback to body (e.g. for testing)
         const candidateId = (req as any).user?.id ?? req.body.candidateId;
         if (!candidateId || typeof candidateId !== 'string') {
@@ -24,21 +24,24 @@ export const createApplicationHandler = async(req:Request, res:Response) =>{
         const application = await createApplication({ ...req.body, candidateId });
         res.status(201).json(application)
     }
-    catch(error){
+    catch (error) {
         console.error('Error creating application:', error);
         console.error('Request body:', req.body);
         console.error('Stack trace:', error.stack);
-        res.status(500).json({ error: 'Failed to create application' });
+        if (error instanceof Error && error.message === 'Candidate has already applied for this job') {
+            return res.status(400).json({ error: error.message });
         }
-    };
+        res.status(500).json({ error: 'Failed to create application' });
+    }
+};
 
 export const createApplication = async (applicationForm: ApplicationFormDetails) => {
-    const { fullName, jobId, phoneNumber,email, cvLink } = applicationForm;
+    const { fullName, jobId, phoneNumber, email, cvLink } = applicationForm;
 
     // Check if candidate has already applied for the job
     const existingApplication = await prisma.application.findFirst({
         where: {
-            phoneNumber,
+            candidateId: applicationForm.candidateId,
             jobId
         }
     });
@@ -71,12 +74,12 @@ export const createApplication = async (applicationForm: ApplicationFormDetails)
 };
 
 
-export const getAllApplicationsHandler = async(req:Request, res:Response) =>{
-    try{
+export const getAllApplicationsHandler = async (req: Request, res: Response) => {
+    try {
         const applications = await getAllApplications();
         res.status(200).json(applications);
     }
-    catch(error){
+    catch (error) {
         res.status(500).json({ error: 'Failed to fetch applications' });
     }
 };
@@ -86,11 +89,53 @@ export const getAllApplications = async () => {
     return prisma.application.findMany();
 };
 
+export const getApplicationById = () => { };
+
+export const getApplicationByJobId = async (req: Request, res: Response) => {
+    try {
+        const jobId = req.params.jobId;
+        if (!jobId || typeof jobId !== 'string') {
+            return res.status(400).json({
+                error: 'jobId is required.',
+            });
+        }
+
+        const applications = await prisma.application.findMany({
+            where: {
+                jobId: jobId
+            }
+        });
+        res.status(200).json(applications);
+    }
+    catch (error) {
+        console.error('Error fetching applications by job ID:', error);
+        res.status(500).json({ error: 'Failed to fetch applications' });
+    }
+};
 
 
+export const getApplicationByCandidateId = async (req: Request, res: Response) => {
+    try{
+        const candidateId = req.params.candidateId;
+        if (!candidateId || typeof candidateId !== 'string') {
+            return res.status(400).json({
+                error: 'candidateId is required. Log in or send candidateId in the request body.',
+            });
+        }
 
-export const getApplicationById = () =>{};
-export const getApplicationByJobId = () =>{};
-export const getApplicationByCandidateId = () =>{};
-export const uodateApplicationStatus = () =>{};
-export const deleteApplication = () =>{};
+        const applications = await prisma.application.findMany({
+            where: {
+                candidateId: candidateId
+            }
+        });
+        res.status(200).json(applications);
+    }
+    catch (error) {
+        console.error('Error fetching applications by candidate ID:', error);
+        res.status(500).json({ error: 'Failed to fetch applications' });
+    }
+};
+
+
+export const uodateApplicationStatus = () => { };
+export const deleteApplication = () => { };

@@ -1,11 +1,12 @@
 // src/pages/Dashboard.tsx
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
-import JobListings from './JobListings';
+//import JobListings from './JobListings';
 import { useAuth } from '../hooks/useAuth';
+import AdminJobListings from './AdminJobListings';
 
 
-export default function Dashboard() {
+export default function AdminDashboard() {
   const navigate = useNavigate();
   const { user, loading, error } = useAuth();
 
@@ -27,8 +28,8 @@ export default function Dashboard() {
   return (
     <div>
       {/* <Navbar /> */}
-      <h1 className='flex items-center justify-center mt-12'>DASHBOARD - main view</h1>
-      <JobListings/>
+      <h1 className='flex items-center justify-center mt-12'>ADMIN DASHBOARD - main view</h1>
+      {<AdminJobListings />}
     </div>
   );
 }

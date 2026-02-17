@@ -7,31 +7,37 @@ import Navbar from "./components/Navbar";
 import Roles from "./components/Roles";
 import Login from "./Login";
 import Dashboard from "./components/Dashboard";
-
 import AuthCallback from "../auth/auth";
 import JobDetails from "./components/JobDetails";
+import { AuthProvider } from "../src/hooks/useAuth";
+import AdminDashboard from "./components/AdminDashboard";
+import AdminJobDetail from "./components/AdminJobDetail";
 
 function App() {
   return (
     <BrowserRouter>
-    <Navbar />
-    <div className="pt-16"> {/* easiest solution so that nav is stuck up */}
-      <Routes>
-        <Route path="/Login" element={<Login />} />
-        <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route path="/Dashboard" element={<Dashboard />} />
-        <Route path="/job-details/:id" element={<JobDetails />} />
-        <Route path="/" element={
-          <>
-            <Hero />
-            <About />
-            <Roles />
-            <Contact />
-            <Footer />
-          </>
-        } />
-      </Routes>
-    </div>
+      <AuthProvider>
+        <Navbar />
+        <div className="pt-16">
+          <Routes>
+            <Route path="/Login" element={<Login />} />
+            <Route path="/auth/callback" element={<AuthCallback />} />
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/AdminDashboard" element={<AdminDashboard />} />
+            <Route path="/job-details/:id" element={<JobDetails />} />
+            <Route path="/admin/job-details/:id" element={<AdminJobDetail />} />
+            <Route path="/" element={
+              <>
+                <Hero />
+                <About />
+                <Roles />
+                <Contact />
+                <Footer />
+              </>
+            } />
+          </Routes>
+        </div>
+      </AuthProvider>
     </BrowserRouter>
   );
 }
