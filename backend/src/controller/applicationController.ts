@@ -137,5 +137,5 @@ export const getApplicationByCandidateId = async (req: Request, res: Response) =
 };
 
 
-export const uodateApplicationStatus = () => { };
+export const updateApplicationStatus = () => { };
 export const deleteApplication = () => { };

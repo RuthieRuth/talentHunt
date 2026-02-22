@@ -1,14 +1,15 @@
+import devOps from "../assets/devOps.jpg";
+import frontend from "../assets/frontend.png";
+import UIUX from "../assets/UIUX.jpg";
+
 const Roles = () => {
   return (
     <div className="px-20 py-10">
       <h1 className="text-2xl font-bold mb-5">Roles we recruit for </h1>
       <div className="flex gap-5 items-center justify-center ">
         <div className="card bg-base-100 w-80 shadow-sm">
-          <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-            />
+          <figure className="m-0">
+            <img src={frontend} alt="frontend" className="w-full h-48 object-cover"/>
           </figure>
           <div className="collapse collapse-arrow border-0">
             <input
@@ -32,10 +33,7 @@ const Roles = () => {
 
         <div className="card bg-base-80 w-80 shadow-sm">
           <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-            />
+           <img src={devOps} alt="DevOps" className="w-full h-48 object-cover"/>
           </figure>
           <div className="collapse collapse-arrow border-0">
             <input
@@ -56,10 +54,7 @@ const Roles = () => {
 
         <div className="card bg-base-80 w-80 shadow-sm">
           <figure>
-            <img
-              src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-              alt="Shoes"
-            />
+            <img src={UIUX} alt="UIUX" className="w-full h-48 object-cover"/>
           </figure>
           <div className="collapse collapse-arrow border-0">
             <input

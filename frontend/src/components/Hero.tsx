@@ -1,7 +1,7 @@
 const Hero = () => {
   return (
     <div className="bg-emerald-200 min-h-[500px] px-40 py-10 items-center justify-center">
-        <h2 className="text-4xl font-bold font-sans">Get recruited for next dream job</h2>
+        <h2 className="text-4xl font-bold font-sans">Get recruited for your next dream job</h2>
         <p className="font-sans text-justify text-xl/7 py-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio illum deleniti, eaque quisquam atque corporis sequi sapiente doloribus eligendi at distinctio corrupti, perspiciatis consequatur accusamus ipsa voluptatem ex cum ducimus. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consectetur fugiat cumque perspiciatis magni iusto. Aliquam voluptatum laborum incidunt quidem asperiores atque eligendi voluptate quibusdam distinctio, necessitatibus blanditiis ad totam vero!
           </p>

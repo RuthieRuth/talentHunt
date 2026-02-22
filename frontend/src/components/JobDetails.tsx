@@ -122,7 +122,7 @@ const JobDetails = () => {
         </div>
       )}
 
-      {user?.role === 'CANDIDATE' && (
+      {user?.role === 'CANDIDATE' && job.status === 'ACTIVE' && (
         <div>
             <button onClick={() => {
                 setShowApplyForm(true);

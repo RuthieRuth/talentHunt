@@ -10,6 +10,10 @@ export default function AdminDashboard() {
   const navigate = useNavigate();
   const { user, loading, error } = useAuth();
 
+  const addNewJob = () => {
+    navigate('/admin/addJob');
+  }
+
   useEffect(() => {
     // not logged in, no user
     if(!loading && !user) {
@@ -27,8 +31,11 @@ export default function AdminDashboard() {
 
   return (
     <div>
-      {/* <Navbar /> */}
       <h1 className='flex items-center justify-center mt-12'>ADMIN DASHBOARD - main view</h1>
+      <button 
+        className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-blue-600 m-5"
+        onClick={addNewJob}>
+          Add New Job</button>
       {<AdminJobListings />}
     </div>
   );

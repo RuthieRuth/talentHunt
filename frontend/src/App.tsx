@@ -6,12 +6,13 @@ import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
 import Roles from "./components/Roles";
 import Login from "./Login";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/JobDashboard";
 import AuthCallback from "../auth/auth";
 import JobDetails from "./components/JobDetails";
 import { AuthProvider } from "../src/hooks/useAuth";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminJobDetail from "./components/AdminJobDetail";
+import AdminAddJob from "./components/AdminAddJob";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
             <Route path="/auth/callback" element={<AuthCallback />} />
             <Route path="/Dashboard" element={<Dashboard />} />
             <Route path="/AdminDashboard" element={<AdminDashboard />} />
+            <Route path="/admin/addJob" element={<AdminAddJob />} />
             <Route path="/job-details/:id" element={<JobDetails />} />
             <Route path="/admin/job-details/:id" element={<AdminJobDetail />} />
             <Route path="/" element={

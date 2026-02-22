@@ -45,7 +45,7 @@ const JobListings = () => {
                 });
                 const jobsData = await response.json();
                 console.log('Full response:', jobsData);
-                setJobs(jobsData);
+                setJobs(jobsData.filter(job => job.status === 'ACTIVE'));
             } catch (error) {
                 console.error('Error fetching job listings:', error);
             }

@@ -40,16 +40,21 @@ export const createJobListing = async (jobData: JobListing) => {
 
 export const getAllJobListingsHandler = async (req: Request, res: Response) => {
   try {
-    const jobs = await getAllJobListings();
+    const {status} = req.query;
+    const jobs = await getAllJobListings(status as string | undefined);
     res.status(200).json(jobs);
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
 };
 
-export const getAllJobListings = async () => {
+export const getAllJobListings = async (status?: string) => {
     console.log("Fetching all job listings");
-    return prisma.job.findMany();
+    const where: any = {};
+    if (status) {
+        where.status = status;
+    } 
+    return prisma.job.findMany({where});
 };
 
 export const getJobListingByIdHandler = async (req: Request, res: Response) => {

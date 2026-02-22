@@ -9,3 +9,6 @@
 
 -  does orm take away models folders?
 - 
+
+- frontend and backend: npm run dev
+- to view database: npx prisma studio

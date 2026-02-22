@@ -33,6 +33,7 @@ const AdminJobDetail = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false)
+  //changes to form during edting: 
   const [newDetails, setNewDetails] = useState({
     id: "",
     company: "",
@@ -75,6 +76,17 @@ const AdminJobDetail = () => {
           body: JSON.stringify({ status: 'CLOSED' })
     });
     setJob(prev => prev ? { ...prev, status: 'CLOSED' } : null);
+  }
+
+  const deleteJobPost = async() => {
+    console.log("delete button clicked")
+    await fetch(`http://localhost:3000/jobs/${id}`, {
+      method: 'DELETE',
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('authToken')}`
+          }
+    });
+    navigate(-1);
   }
 
   useEffect(() => {
@@ -145,11 +157,22 @@ const AdminJobDetail = () => {
           onClick={isEditing ? saveJobPost : editJobPost}>
             {isEditing ? 'Save' : 'Edit Job'}
           </button>
+          {job.status === 'ACTIVE' ? 
+          (<button 
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              onClick={closeJobPost}>
+              Close Job
+            </button>
+          ):(<button 
+              className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
+              onClick={closeJobPost}>
+              Closed
+            </button>)}
           <button 
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
-            onClick={closeJobPost}>
-            Close Job
-          </button>
+              className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+              onClick={deleteJobPost}>
+              Delete Job
+            </button>
         </div>
       </div>
 

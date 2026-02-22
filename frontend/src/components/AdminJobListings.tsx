@@ -99,8 +99,8 @@ const AdminJobListings = () => {
                                     View Applicants
                                 </span>
                             </p>
-                            <p><span className="font-medium bg-yellow-500 p-1 rounded">Edit Job</span></p>
-                            <p><span className="font-medium bg-red-500 p-1 rounded">Close</span></p>
+                           {/*  <p><span className="font-medium bg-yellow-500 p-1 rounded">Edit Job</span></p>
+                            <p><span className="font-medium bg-red-500 p-1 rounded">Close</span></p> */}
                         </div>
                     </div>
                     )
