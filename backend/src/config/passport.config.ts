@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import dotenv from 'dotenv';
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '../generated/prisma/index.js';
 
 dotenv.config();
 
@@ -20,7 +20,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-      callbackURL: 'http://localhost:3000/auth/google/callback',
+      callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`,
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
@@ -36,7 +36,7 @@ passport.use(
           user = await prisma.user.create({
             data: {
               googleId: profile.id,
-              email: profile.emails?.[0]?.value,
+              email: profile.emails?.[0]?.value ?? '',
               name: profile.displayName,
               picture: profile.photos?.[0]?.value,
               role: 'CANDIDATE' //default role

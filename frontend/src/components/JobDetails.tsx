@@ -40,7 +40,7 @@ const JobDetails = () => {
 
       // submit application logic here
       try {
-        const response = await fetch('http://localhost:3000/applications', {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/applications`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -78,7 +78,7 @@ const JobDetails = () => {
     useEffect(() => {
         const fetchJobDetails = async () => {
             try{
-                const response = await fetch(`http://localhost:3000/jobs/${id}`, {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                     }

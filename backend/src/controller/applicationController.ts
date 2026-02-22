@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { PrismaClient } from '../generated/prisma';
+import { PrismaClient } from '../generated/prisma/index.js';
 
 const prisma = new PrismaClient();
 
@@ -27,7 +27,6 @@ export const createApplicationHandler = async (req: Request, res: Response) => {
     catch (error) {
         console.error('Error creating application:', error);
         console.error('Request body:', req.body);
-        console.error('Stack trace:', error.stack);
         if (error instanceof Error && error.message === 'Candidate has already applied for this job') {
             return res.status(400).json({ error: error.message });
         }

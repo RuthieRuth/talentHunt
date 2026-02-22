@@ -56,7 +56,7 @@ const AdminJobDetail = () => {
   };
 
   const saveJobPost = async () => {
-    await fetch(`http://localhost:3000/jobs/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs/${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${localStorage.getItem('authToken')}` },
       body: JSON.stringify(newDetails)
@@ -67,7 +67,7 @@ const AdminJobDetail = () => {
 
   const closeJobPost = async() => {
     console.log("close button clicked")
-    await fetch(`http://localhost:3000/jobs/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs/${id}`, {
       method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -80,7 +80,7 @@ const AdminJobDetail = () => {
 
   const deleteJobPost = async() => {
     console.log("delete button clicked")
-    await fetch(`http://localhost:3000/jobs/${id}`, {
+    await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs/${id}`, {
       method: 'DELETE',
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`
@@ -92,7 +92,7 @@ const AdminJobDetail = () => {
   useEffect(() => {
     const fetchJobDetails = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/jobs/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`
           }
@@ -107,7 +107,7 @@ const AdminJobDetail = () => {
 
     const fetchApplicants = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/applications/job/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/applications/job/${id}`, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('authToken')}`
           }

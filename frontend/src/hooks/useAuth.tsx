@@ -31,7 +31,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/auth/google/userinfo', {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/auth/google/userinfo`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 if (response.ok) {

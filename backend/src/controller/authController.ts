@@ -1,7 +1,7 @@
 import passport from "passport";
 import { NextFunction, Response, Request } from "express";
 import jwt from 'jsonwebtoken';
-import jwtConfig  from '../config/jwt.config';
+import jwtConfig  from '../config/jwt.config.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -36,7 +36,7 @@ export const googleAuthCallback = (req: Request, res: Response, next: NextFuncti
             role: user.role || 'ADMIN' || 'CANDIDATE' // Example role assignment
         },
             jwtConfig.secret,
-            { expiresIn: jwtConfig.expiresIn });
+            { expiresIn: jwtConfig.expiresIn});
 
         console.log('JWT token generated, redirecting to frontend');
 

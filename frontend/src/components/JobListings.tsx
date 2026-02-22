@@ -38,7 +38,7 @@ const JobListings = () => {
      useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await fetch('http://localhost:3000/jobs', {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                     }
@@ -53,7 +53,7 @@ const JobListings = () => {
 
         const fetchApplications = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/applications/candidate/${user.id}`, {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/applications/candidate/${user.id}`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                     }

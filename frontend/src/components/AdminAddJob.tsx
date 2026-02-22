@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router';
 
 const AdminAddJob = () => {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ const AdminAddJob = () => {
     const addNewJob = async () => {
         console.log('add new job', details);
         try{
-            const response = await fetch('http://localhost:3000/jobs',{
+            const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs`,{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

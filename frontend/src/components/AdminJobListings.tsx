@@ -37,7 +37,7 @@ const AdminJobListings = () => {
      useEffect(() => {
         const fetchJobs = async () => {
             try {
-                const response = await fetch('http://localhost:3000/jobs', {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs`, {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                     }
@@ -52,7 +52,7 @@ const AdminJobListings = () => {
 
         const fetchApplicants = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/applications`, { // change endpoint
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/applications`, { // change endpoint
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('authToken')}`
                     }
