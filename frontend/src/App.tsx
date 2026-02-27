@@ -9,7 +9,7 @@ import Login from "./Login";
 import Dashboard from "./components/JobDashboard";
 import AuthCallback from "../auth/auth";
 import JobDetails from "./components/JobDetails";
-import { AuthProvider } from "../src/hooks/useAuth";
+import { AuthProvider } from "../src/hooks/AuthProvider";
 import AdminDashboard from "./components/AdminDashboard";
 import AdminJobDetail from "./components/AdminJobDetail";
 import AdminAddJob from "./components/AdminAddJob";
