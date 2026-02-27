@@ -49,11 +49,11 @@ const AdminJobDetail = () => {
     setIsEditing(true);
   };
 
-  const handleChange = (event) => {
+  const handleChange = ((event: React.ChangeEvent<HTMLInputElement>) => {
     const name = event.target.name;
     const value = event.target.value;
     setNewDetails(values => ({...values, [name]: value}));
-  };
+  });
 
   const saveJobPost = async () => {
     await fetch(`${import.meta.env.VITE_BACKEND_URL}/jobs/${id}`, {

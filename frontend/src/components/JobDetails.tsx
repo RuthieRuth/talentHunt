@@ -36,7 +36,7 @@ const JobDetails = () => {
 
     const submitApplication = async (event: React.FormEvent) => {
       event.preventDefault();
-      console.log("Application submitted for job id:", job.id);
+      console.log("Application submitted for job id:", job?.id);
 
       // submit application logic here
       try {
