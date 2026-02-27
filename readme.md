@@ -2,7 +2,7 @@
 
 A job board application where candidates can browse and apply for jobs, and admins can manage job listings and review applicants.
 
-**Live demo:** _coming soon_
+**Live demo:** (https://talenthunt-production-d46c.up.railway.app/)
 
 ## Tech Stack
 
